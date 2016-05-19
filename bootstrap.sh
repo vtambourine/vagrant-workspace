@@ -18,9 +18,9 @@ apt-get install -y nodejs
 
 echo "Installing Go"
 GO_ARCHIVE=go1.6.2.linux-amd64.tar.gz
-wget https://storage.googleapis.com/golang/$GO_ARCHIVE
+wget --no-verbose https://storage.googleapis.com/golang/$GO_ARCHIVE
 tar -C /usr/local/ -xzf $GO_ARCHIVE
-echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
+echo 'export PATH=$PATH:/usr/local/go/bin' >> /etc/profile
 rm $GO_ARCHIVE
 
 echo "Installing Ruby"
