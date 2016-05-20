@@ -43,4 +43,24 @@ if ! type_exists ruby; then
   apt-get install --yes ruby-full
 fi
 
+echo 'Installing PostgreSQL'
+if ! type_exists psql; then
+  PG_VERSION=9.4
+  apt-get install --yes postgresql-$PG_VERSION postgresql-client-$PG_VERSION
+
+  PG_CONFIG=/etc/postgresql/$PG_VERSION/main/postgresql.conf
+  PG_HBA=/etc/postgresql/$PG_VERSION/main/pg_hba.conf
+  # Listen all incoming addresses. Possibly change to host IP
+  sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" $PG_CONFIG
+  # Add password auth
+  echo 'host all all all md5' >> $PG_HBA
+
+  service postgresql restart
+
+  cat << EOF | su - postgres -c psql
+    CREATE USER vagrant WITH PASSWORD 'maester';
+    CREATE DATABASE winterfell WITH OWNER=vagrant;
+  EOF
+fi
+
 echo 'Provision done!'
