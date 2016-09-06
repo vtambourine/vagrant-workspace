@@ -1,0 +1,1 @@
+{"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/vkleshchenko/Code/vagrant-data-science-workspace","disabled":false,"__vagrantfile":true},"/home/vagrant/code":{"guestpath":"/home/vagrant/code","hostpath":"/Users/vkleshchenko/Code","disabled":false,"__vagrantfile":true}}}
